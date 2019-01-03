@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.sun.activeMq.SpringBoot.normal.queue.QueueProducer;
-import com.sun.activeMq.SpringBoot.normal.topic.TopicProducer;
-import com.sun.activeMq.SpringBoot.replyTo.ReplyToProducer;
+import com.sun.activeMq.boot.normal.queue.QueueProducer;
+import com.sun.activeMq.boot.normal.topic.TopicProducer;
+import com.sun.activeMq.boot.replyTo.ReplyToProducer;
 
 
 @RunWith(SpringRunner.class)

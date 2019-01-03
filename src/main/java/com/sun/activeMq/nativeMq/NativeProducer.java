@@ -1,4 +1,4 @@
-package com.sun.activeMq.Native;
+package com.sun.activeMq.nativeMq;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;

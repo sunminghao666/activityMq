@@ -1,4 +1,4 @@
-package com.sun.activeMq.SpringBoot.config;
+package com.sun.activeMq.boot.config;
 
 import javax.jms.ConnectionFactory;
 

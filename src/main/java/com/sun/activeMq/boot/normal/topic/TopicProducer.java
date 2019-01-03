@@ -1,4 +1,4 @@
-package com.sun.activeMq.SpringBoot.normal.topic;
+package com.sun.activeMq.boot.normal.topic;
 
 import javax.jms.Destination;
 
