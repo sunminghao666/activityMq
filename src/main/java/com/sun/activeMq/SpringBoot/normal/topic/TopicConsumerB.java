@@ -1,4 +1,4 @@
-package com.sun.activeMq.normal.topic;
+package com.sun.activeMq.SpringBoot.normal.topic;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.sun.activeMq.normal.queue;
+package com.sun.activeMq.SpringBoot.normal.queue;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;

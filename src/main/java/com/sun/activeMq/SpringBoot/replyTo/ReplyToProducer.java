@@ -1,4 +1,4 @@
-package com.sun.activeMq.replyTo;
+package com.sun.activeMq.SpringBoot.replyTo;
 
 import javax.jms.Destination;
 

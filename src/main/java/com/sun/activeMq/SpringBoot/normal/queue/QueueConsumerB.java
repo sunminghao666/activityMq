@@ -1,4 +1,4 @@
-package com.sun.activeMq.normal.queue;
+package com.sun.activeMq.SpringBoot.normal.queue;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
