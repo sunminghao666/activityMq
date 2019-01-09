@@ -35,8 +35,7 @@ public class ReliabilityProducerForTransactional {
         MessageProducer messageProducer;
 
         /* 实例化连接工厂*/
-        connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD,
-                BROKEURL);
+        connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);
         try {
             /* 通过连接工厂获取连接*/
             connection = connectionFactory.createConnection();
