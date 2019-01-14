@@ -38,6 +38,15 @@ public class DelayOrderConsumer {
     //默认连接地址
     private static final String BROKEURL = ActiveMQConnection.DEFAULT_BROKER_URL;
 
+    @JmsListener(destination = "delay.order")
+    public void receiveQueue(String txtMsg) {
+		System.out.println("接收到消息队列发出消息1111："+txtMsg);
+		Gson gson = new Gson();
+		DelayOrderDto order = (DelayOrderDto)gson.fromJson(txtMsg, DelayOrderDto.class);
+		checkDelayOrder.checkDelayOrder(order);
+    }
+
+
 	public void delayOrderConsumer() throws JMSException {
 
 		ConnectionFactory factory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);

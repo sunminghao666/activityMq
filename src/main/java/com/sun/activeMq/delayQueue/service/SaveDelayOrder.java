@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.sun.activeMq.delayQueue.code.DelayQueueCode;
 import com.sun.activeMq.delayQueue.dao.DelayOrderDao;
+import com.sun.activeMq.delayQueue.delayOrderMq.DelayOrderProducer;
 import com.sun.activeMq.delayQueue.dto.DelayOrderDto;
 
 @Service
-@Qualifier("mq")
 public class SaveDelayOrder {
 
 	@Autowired
@@ -29,6 +29,9 @@ public class SaveDelayOrder {
 
 	@Autowired
 	private JmsTemplate jmsTemplate;
+
+	@Autowired
+	private DelayOrderProducer delayOrderProducer;
 
 //	@Autowired
 //	@Qualifier("mq")
@@ -46,7 +49,8 @@ public class SaveDelayOrder {
             orderExp.setOrderStatus(DelayQueueCode.UN_PAY);
             delayOrderDao.insertDelayOrder(orderExp, expireTime);
     		System.out.println("1111订单[超时时长："+expireTime+"秒] 将被发送给消息队列，详情："+orderExp);
-    		jmsTemplate.send("order.delay", new CreateMessage(orderExp,expireTime*1000));
+    		delayOrderProducer.delayOrderProducer(orderExp, expireTime);
+//    		jmsTemplate.send("order.delay", new CreateMessage(orderExp,expireTime*1000));
 //            saveDelayOrderToQueue.orderDelay(orderExp, expireTime);
             
 		}

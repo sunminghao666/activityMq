@@ -31,11 +31,6 @@ public class DelayOrderTests {
 	}
 
 	@Test
-	public void delayOrderProducer() {
-		delayOrderProducer.delayOrderProducer();
-	}
-
-	@Test
 	public void delayOrderConsumer() throws JMSException {
 		delayOrderConsumer.delayOrderConsumer();
 	}

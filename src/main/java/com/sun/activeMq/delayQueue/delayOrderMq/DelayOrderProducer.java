@@ -42,7 +42,7 @@ public class DelayOrderProducer {
     //发送的消息数量
     private static final int ORDER_NO = 3;
 
-    public void delayOrderProducer() {
+    public void delayOrderProducer(DelayOrderDto orderExp, long expireTime) {
 
         ConnectionFactory connectionFactory;
         Connection connection = null;
@@ -63,22 +63,15 @@ public class DelayOrderProducer {
             
     		Random r = new Random();
 
-    		for (int i = 0; i < ORDER_NO; i++) {
-    			Gson gson = new Gson();
-    			
-    			long expireTime = r.nextInt(20)+10;//订单的超时时长，单位秒
-    			DelayOrderDto orderExp = new DelayOrderDto();
-                orderExp.setOrderNo(getOrderNo());
-                orderExp.setOrderNote("延迟订单——"+i);
-                orderExp.setOrderStatus(DelayQueueCode.UN_PAY);
-                delayOrderDao.insertDelayOrder(orderExp, expireTime);
-                String txtMsg = gson.toJson(orderExp);
-        		System.out.println("1111订单[超时时长："+expireTime+"秒] 将被发送给消息队列，详情："+orderExp);
-        		TextMessage message = session.createTextMessage(txtMsg);
-        		message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, expireTime);
-        		// 发送消息
-        		messageProducer.send(message);
-    		}
+			Gson gson = new Gson();
+			
+            String txtMsg = gson.toJson(orderExp);
+    		System.out.println("1111订单[超时时长："+expireTime+"秒] 将被发送给消息队列，详情："+orderExp);
+    		TextMessage message = session.createTextMessage(txtMsg);
+    		message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, expireTime*1000);
+    		// 发送消息
+    		messageProducer.send(message);
+
             session.commit();
             messageProducer.close();
             session.close();
